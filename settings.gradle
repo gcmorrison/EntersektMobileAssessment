@@ -1,0 +1,2 @@
+rootProject.name='Mobile Technical Assessment'
+include ':app'
