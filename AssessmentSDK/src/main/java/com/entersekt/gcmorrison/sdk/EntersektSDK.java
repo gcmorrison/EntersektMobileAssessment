@@ -1,9 +1,12 @@
 package com.entersekt.gcmorrison.sdk;
 
+import android.content.Context;
+
 import androidx.annotation.VisibleForTesting;
 
 import com.entersekt.gcmorrison.sdk.api.model.City;
 import com.entersekt.gcmorrison.sdk.api.retrofit.RetrofitEntersektApi;
+import com.entersekt.gcmorrison.sdk.cache.SdkCache;
 import com.entersekt.gcmorrison.sdk.query.FilterQueries;
 import com.entersekt.gcmorrison.sdk.repository.Repository;
 
@@ -44,9 +47,9 @@ public class EntersektSDK implements FilterQueries {
         this.repository = repository;
     }
 
-    public static EntersektSDK getInstance() {
+    public static EntersektSDK getInstance(Context context) {
         if (instance == null) {
-            instance = new EntersektSDK(new Repository(new RetrofitEntersektApi()));
+            instance = new EntersektSDK(new Repository(new RetrofitEntersektApi(), new SdkCache(context)));
         }
         return instance;
     }

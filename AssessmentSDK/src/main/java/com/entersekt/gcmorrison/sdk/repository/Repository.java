@@ -2,6 +2,7 @@ package com.entersekt.gcmorrison.sdk.repository;
 
 import com.entersekt.gcmorrison.sdk.api.EntersektApi;
 import com.entersekt.gcmorrison.sdk.api.model.City;
+import com.entersekt.gcmorrison.sdk.cache.SdkCache;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ import io.reactivex.rxjava3.core.Single;
  */
 public class Repository {
     private final EntersektApi api;
+    private final SdkCache cache;
 
-    public Repository(EntersektApi api) {
+    public Repository(EntersektApi api, SdkCache cache) {
         this.api = api;
+        this.cache = cache;
     }
 
     /**
@@ -24,6 +27,15 @@ public class Repository {
      * @return All the cities on the server, in the order that it was received
      */
     public Single<List<City>> getCities() {
-        return api.getCities();
+        return api.getCities()
+                .doOnSuccess(cache::store)
+                .onErrorReturn(throwable -> {
+                    List<City> cachedCities = cache.get();
+                    // TODO: Only return the cached data if the phone is offline
+                    if (cachedCities == null) {
+                        throw throwable;
+                    }
+                    return cachedCities;
+                });
     }
 }
