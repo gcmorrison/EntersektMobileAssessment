@@ -56,6 +56,7 @@ ext {
 
     rx = [
             rxJavaVersion: '3.0.0',
+            rxAndroidVersion: '3.0.0',
     ]
 
     inject = [
