@@ -13,7 +13,8 @@ import io.reactivex.rxjava3.core.Single;
 /**
  * This class handles all the access of data for the SDK. It provides methods that a consumer can use
  * to reach specific pieces of data. But it tries not to dictate behaviour for the consumer, as the
- * SDK will not always know how the consumer will want to use its data.
+ * SDK will not always know how the consumer will want to use its data. All queries are wrapped in
+ * Singles, so that the consumer can properly react to data being loaded or failure cases.
  * <br><br>
  * <b>NOTE:</b> This class performs the explicit query and filtering of results. It does not have
  * support for finding specific child data in a parent object (e.g. finding a specific Mall in an
