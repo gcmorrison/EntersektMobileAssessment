@@ -18,8 +18,10 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.exceptions.CompositeException;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -84,5 +86,18 @@ public class RepositoryTest implements RandomTestData {
         verify(mockCache, never()).store(cities);
         verify(mockCache, times(1)).get();
         assertArrayEquals(cities.toArray(), results.toArray());
+    }
+
+    @Test(expected = CompositeException.class)
+    public void returnOnFailureWithNoCachedData() {
+        // GIVEN
+        when(mockCache.get()).thenReturn(null);
+        when(mockApi.getCities()).thenReturn(Single.error(new CompositeException(new Throwable())));
+
+        // WHEN
+        List<City> results = classUnderTest.getCities().blockingGet();
+
+        // THEN
+        fail("Exception was expected");
     }
 }
