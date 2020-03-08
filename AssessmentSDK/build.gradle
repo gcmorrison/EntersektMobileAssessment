@@ -1,17 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compileSdk
     buildToolsVersion rootProject.ext.buildVersion
 
     defaultConfig {
-        applicationId "com.entersekt.gcmorrison.assessment"
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -29,12 +29,26 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':AssessmentSDK')
 
     implementation "androidx.appcompat:appcompat:$rootProject.ext.android.xVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.android.xVersion"
+
+    /*
+     * These dependencies are fundamental to the behaviour of the SDK. Consumers will need to use these dependencies
+     */
+    api "io.reactivex.rxjava3:rxjava:$rootProject.ext.rx.rxJavaVersion"
+
+    /*
+     * These dependencies are supplemental, meant as time savers for the purposes of this assessment.
+     * The functionality can potentially be implemented manually to reduce dependency footprint
+     */
+    api "com.google.dagger:dagger:$rootProject.ext.inject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.inject.daggerVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.api.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.api.retrofitVersion"
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:$rootProject.ext.api.retrofitRxJ3Version"
 
     testImplementation "junit:junit:$rootProject.ext.testing.junitVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.testing.mockitoVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.androidTesting.junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.androidTesting.espressoVersion"
 }

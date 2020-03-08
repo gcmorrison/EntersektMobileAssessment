@@ -1,15 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
-        
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,10 +20,50 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    compileSdk = 29
+    buildVersion = "29.0.3"
+
+    minSdk = 19
+    targetSdk = 29
+
+    android = [
+            xVersion: '1.1.0',
+    ]
+
+    androidTesting = [
+            junitVersion   : '1.1.1',
+            espressoVersion: '3.2.0',
+    ]
+
+    api = [
+            retrofitVersion    : '2.7.2',
+            retrofitRxJ3Version: '3.0.0-RC8',
+            retrofitGsonVersion: '2.7.2',
+    ]
+
+    java = [
+            javaVersion: JavaVersion.VERSION_1_8,
+    ]
+
+    rx = [
+            rxJavaVersion: '3.0.0',
+    ]
+
+    inject = [
+            daggerVersion: '2.26',
+    ]
+
+    testing = [
+            junitVersion: '4.12',
+            mockitoVersion: '3.3.0',
+    ]
 }
