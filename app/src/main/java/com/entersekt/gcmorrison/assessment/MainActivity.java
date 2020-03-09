@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCityClicked(City city) {
-        addFragment(new MallsListFragment(city.getMalls(), getString(R.string.malls_for, city.getName())));
+        addFragment(new DetailedCityFragment(city));
     }
 
     public void onMallClicked(Mall mall) {

@@ -53,7 +53,7 @@ public abstract class ClickableListFragment<T> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflated = inflater.inflate(getLayoutId(), null);
+        View inflated = inflater.inflate(getLayoutId(), container, false);
 
         setupListView(inflated.findViewById(R.id.list));
         setupTitleView(inflated);

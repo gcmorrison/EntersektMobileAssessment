@@ -103,12 +103,32 @@ public interface FilterQueries {
      * @return All the shops in that city
      */
     default Single<List<Shop>> getShopsForCity(String cityName) {
-        return getCity(cityName)
-                .toObservable()
+        return getShopsForCity(getCity(cityName));
+    }
+
+    /**
+     * Convenience method for getting all shops for a city, when the city object already exists
+     *
+     * @param city The specific city in question
+     * @return All shops in that city
+     */
+    default Single<List<Shop>> getShopsForCity(Single<City> city) {
+        return city.toObservable()
                 .map(City::getMalls)
                 .flatMap(Observable::fromIterable)
                 .map(Mall::getShops)
                 .flatMap(Observable::fromIterable)
                 .toList();
+    }
+
+    /**
+     * Convenience method for getting all shops for a city, when the city object already exists
+     *
+     * @param city The specific city in question
+     * @return All shops in that city
+     */
+    default List<Shop> getShopsForCity(City city) {
+        return getShopsForCity(Single.just(city))
+                .blockingGet();
     }
 }
