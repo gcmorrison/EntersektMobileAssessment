@@ -56,7 +56,7 @@ public abstract class ClickableListFragment<T> extends Fragment {
         View inflated = inflater.inflate(getLayoutId(), null);
 
         setupListView(inflated.findViewById(R.id.list));
-        setupTitleView(inflated.findViewById(R.id.txt_list_title));
+        setupTitleView(inflated);
 
         return inflated;
     }
@@ -66,10 +66,15 @@ public abstract class ClickableListFragment<T> extends Fragment {
         recyclerView.setAdapter(new ClickableRecyclerAdapter<T>(items, this::itemName, this::onClick));
     }
 
-    private void setupTitleView(TextView titleView) {
+    private void setupTitleView(View inflated) {
         if (!TextUtils.isEmpty(title)) {
+            TextView titleView = inflated.findViewById(R.id.txt_list_title);
+            View divider = inflated.findViewById(R.id.divider);
+
             titleView.setText(title);
             titleView.setVisibility(View.VISIBLE);
+
+            divider.setVisibility(View.VISIBLE);
         }
     }
 

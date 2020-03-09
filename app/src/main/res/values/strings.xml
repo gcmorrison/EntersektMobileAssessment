@@ -2,4 +2,6 @@
     <string name="app_name">Mobile Technical Assessment</string>
     <string name="retry">Retry</string>
     <string name="error">Operation failed because: %1$s</string>
+    <string name="malls_for">Malls in %1$s</string>
+    <string name="shops_in">Shops in %1$s</string>
 </resources>

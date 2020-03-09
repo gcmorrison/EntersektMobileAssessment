@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.entersekt.gcmorrison.sdk.EntersektSDK;
 import com.entersekt.gcmorrison.sdk.api.model.City;
+import com.entersekt.gcmorrison.sdk.api.model.Mall;
 
 import java.util.List;
 
@@ -79,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCityClicked(City city) {
-        // TODO
-        addFragment(new FailureFragment(new Throwable()));
+        addFragment(new MallsListFragment(city.getMalls(), getString(R.string.malls_for, city.getName())));
+    }
+
+    public void onMallClicked(Mall mall) {
+        addFragment(new ShopsListFragment(mall.getShops(), getString(R.string.shops_in, mall.getName())));
     }
 }
