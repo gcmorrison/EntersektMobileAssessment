@@ -10,6 +10,8 @@ import androidx.arch.core.util.Function;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.entersekt.gcmorrison.assessment.R;
+
 import java.util.List;
 
 /**
