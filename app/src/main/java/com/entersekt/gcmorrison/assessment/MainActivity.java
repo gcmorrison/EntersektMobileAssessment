@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        getCitiesAndDisplay();
+        loadAndDisplay();
     }
 
-    private void getCitiesAndDisplay() {
+    public void loadAndDisplay() {
         EntersektSDK.getInstance(this)
                 .getAllCities()
                 .subscribeOn(Schedulers.io())
@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
                 })
-                .subscribe(this::showCitiesList,
-                        this::showError);
+                .subscribe(this::showCities,
+                        t -> showError(t.getCause()));
     }
 
     @Override
@@ -62,25 +62,24 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    private void showCitiesList(List<City> cities) {
-        replaceFragment(new CitiesListFragment(cities));
-    }
-
-    private void showError(Throwable throwable) {
-        // TODO
-        replaceFragment(new FailureFragment());
-    }
-
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
-    public void onCityClicked(City city) {
-        // TODO
-        addFragment(new FailureFragment());
+    private void addFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(fragment.toString()).commit();
     }
 
-    private void addFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).addToBackStack(fragment.toString()).commit();
+    private void showCities(List<City> cities) {
+        replaceFragment(new CitiesListFragment(cities));
+    }
+
+    private void showError(Throwable throwable) {
+        replaceFragment(new FailureFragment(throwable));
+    }
+
+    public void onCityClicked(City city) {
+        // TODO
+        addFragment(new FailureFragment(new Throwable()));
     }
 }

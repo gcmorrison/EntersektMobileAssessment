@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.Collections;
 import java.util.List;
 
 public class SdkCache {
@@ -33,7 +32,7 @@ public class SdkCache {
     public List<City> get() {
         String cachedJson = sharedPreferences.getString(CITY_CACHE_KEY, null);
         if (cachedJson == null) {
-            return Collections.emptyList();
+            return null;
         }
 
         TypeToken<List<City>> typeToken = new TypeToken<List<City>>() {

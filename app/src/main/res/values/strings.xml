@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mobile Technical Assessment</string>
+    <string name="retry">Retry</string>
+    <string name="error">Operation failed because: %1$s</string>
 </resources>
