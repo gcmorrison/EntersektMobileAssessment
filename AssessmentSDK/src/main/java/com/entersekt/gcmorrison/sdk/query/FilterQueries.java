@@ -118,7 +118,7 @@ public interface FilterQueries {
                 .flatMap(Observable::fromIterable)
                 .map(Mall::getShops)
                 .flatMap(Observable::fromIterable)
-                .distinct()
+                .distinct(Shop::getName)
                 .toList();
     }
 

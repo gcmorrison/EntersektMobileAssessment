@@ -33,10 +33,10 @@ public interface RandomTestData {
                 .build();
     }
 
-    default Shop randomShop() {
+    default Shop randomShop(String... name) {
         return new Shop.Builder()
                 .setId(randomInt())
-                .setName(randomString())
+                .setName(name.length == 1 ? name[0] : randomString())
                 .build();
     }
 }
