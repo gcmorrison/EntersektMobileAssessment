@@ -189,7 +189,7 @@ public class FilterQueriesTest implements RandomTestData {
     }
 
     @Test
-    public void getShopsForCity() {
+    public void getShopsForCityAllUnique() {
         // GIVEN
         Shop[] allShops = new Shop[]{randomShop(), randomShop(), randomShop(), randomShop()};
         City city = randomCity(randomMall(allShops[0], allShops[1]), randomMall(allShops[2], allShops[3]));
@@ -200,5 +200,20 @@ public class FilterQueriesTest implements RandomTestData {
 
         // THEN
         assertArrayEquals(allShops, results.toArray());
+    }
+
+    @Test
+    public void getShopsForCityWithDuplicates() {
+        // GIVEN
+        Shop duplicateShop = randomShop();
+        Shop[] allShops = new Shop[]{duplicateShop, randomShop(), duplicateShop, randomShop()};
+        City city = randomCity(randomMall(allShops[0], allShops[1]), randomMall(allShops[2], allShops[3]));
+        when(mockRepo.getCities()).thenReturn(Single.just(Collections.singletonList(city)));
+
+        // WHEN
+        List<Shop> results = classUnderTest.getShopsForCity(city.getName()).blockingGet();
+
+        // THEN
+        assertArrayEquals(new Shop[]{duplicateShop, allShops[1], allShops[3]}, results.toArray());
     }
 }
