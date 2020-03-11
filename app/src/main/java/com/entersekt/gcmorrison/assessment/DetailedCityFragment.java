@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.entersekt.gcmorrison.assessment.lists.MallsListFragment;
+import com.entersekt.gcmorrison.assessment.lists.ShopsListFragment;
 import com.entersekt.gcmorrison.sdk.EntersektSDK;
 import com.entersekt.gcmorrison.sdk.api.model.City;
 

@@ -1,5 +1,7 @@
-package com.entersekt.gcmorrison.assessment;
+package com.entersekt.gcmorrison.assessment.lists;
 
+import com.entersekt.gcmorrison.assessment.MainActivity;
+import com.entersekt.gcmorrison.assessment.recycler.ClickableListFragment;
 import com.entersekt.gcmorrison.sdk.api.model.City;
 
 import java.util.List;
@@ -14,12 +16,12 @@ public class CitiesListFragment extends ClickableListFragment<City> {
     }
 
     @Override
-    String itemName(City city) {
+    protected String itemName(City city) {
         return city.getName();
     }
 
     @Override
-    void onClick(City city) {
+    protected void onClick(City city) {
         ((MainActivity) Objects.requireNonNull(getActivity())).onCityClicked(city);
     }
 }

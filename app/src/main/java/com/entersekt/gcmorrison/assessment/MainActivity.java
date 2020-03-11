@@ -7,6 +7,8 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.entersekt.gcmorrison.assessment.lists.CitiesListFragment;
+import com.entersekt.gcmorrison.assessment.lists.ShopsListFragment;
 import com.entersekt.gcmorrison.sdk.EntersektSDK;
 import com.entersekt.gcmorrison.sdk.api.model.City;
 import com.entersekt.gcmorrison.sdk.api.model.Mall;

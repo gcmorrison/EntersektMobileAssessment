@@ -41,7 +41,6 @@ ext {
 
     androidTesting = [
             junitVersion   : '1.1.1',
-            espressoVersion: '3.2.0',
     ]
 
     api = [
@@ -55,7 +54,7 @@ ext {
     ]
 
     rx = [
-            rxJavaVersion: '3.0.0',
+            rxJavaVersion   : '3.0.0',
             rxAndroidVersion: '3.0.0',
     ]
 
@@ -64,7 +63,7 @@ ext {
     ]
 
     testing = [
-            junitVersion: '4.12',
+            junitVersion  : '4.12',
             mockitoVersion: '3.3.0',
     ]
 }

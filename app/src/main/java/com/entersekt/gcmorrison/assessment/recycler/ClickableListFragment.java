@@ -1,4 +1,4 @@
-package com.entersekt.gcmorrison.assessment;
+package com.entersekt.gcmorrison.assessment.recycler;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.entersekt.gcmorrison.assessment.recycler.ClickableRecyclerAdapter;
+import com.entersekt.gcmorrison.assessment.R;
 
 import java.util.List;
 
@@ -41,14 +41,14 @@ public abstract class ClickableListFragment<T> extends Fragment {
      * @param item The item that will be displayed
      * @return A string name
      */
-    abstract String itemName(T item);
+    protected abstract String itemName(T item);
 
     /**
      * Handle the event when a user clicks on an item in the list
      *
      * @param item The item that was clicked
      */
-    abstract void onClick(T item);
+    protected abstract void onClick(T item);
 
     @Nullable
     @Override
