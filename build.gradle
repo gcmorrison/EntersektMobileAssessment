@@ -36,11 +36,12 @@ ext {
     targetSdk = 29
 
     android = [
-            xVersion: '1.1.0',
+            xVersion       : '1.1.0',
+            materialVersion: '1.0.0',
     ]
 
     androidTesting = [
-            junitVersion   : '1.1.1',
+            junitVersion: '1.1.1',
     ]
 
     api = [
@@ -56,10 +57,6 @@ ext {
     rx = [
             rxJavaVersion   : '3.0.0',
             rxAndroidVersion: '3.0.0',
-    ]
-
-    inject = [
-            daggerVersion: '2.26',
     ]
 
     testing = [

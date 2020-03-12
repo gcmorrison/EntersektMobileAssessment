@@ -41,8 +41,6 @@ dependencies {
      * These dependencies are supplemental, meant as time savers for the purposes of this assessment.
      * The functionality can potentially be implemented manually to reduce dependency footprint
      */
-    api "com.google.dagger:dagger:$rootProject.ext.inject.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.inject.daggerVersion"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.api.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.api.retrofitVersion"
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:$rootProject.ext.api.retrofitRxJ3Version"
